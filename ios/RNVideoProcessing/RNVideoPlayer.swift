@@ -46,7 +46,7 @@ class RNVideoPlayer: RCTView {
                 self._playerHeight = val as! CGFloat
                 self.frame.size.height = self._playerHeight
                 self.rotate = self._rotate ? 1 : 0
-                print("CHANGED HEIGHT \(val ?? <#default value#>)")
+                //print("CHANGED HEIGHT \(val ?? <#default value#>)")
             }
         }
         get {
@@ -71,7 +71,7 @@ class RNVideoPlayer: RCTView {
             self._resizeMode = AVLayerVideoGravity(rawValue: newValue! as String)
             self.playerLayer?.videoGravity = self._resizeMode
             self.setNeedsLayout()
-            print("CHANGED: resizeMode \(newValue ?? <#default value#>)")
+            //print("CHANGED: resizeMode \(newValue ?? <#default value#>)")
         }
         get {
             return nil
@@ -84,7 +84,7 @@ class RNVideoPlayer: RCTView {
                 self._playerWidth = val as! CGFloat
                 self.frame.size.width = self._playerWidth
                 self.rotate = self._rotate ? 1 : 0
-                print("CHANGED WIDTH \(val ?? <#default value#>)")
+                //print("CHANGED WIDTH \(val ?? <#default value#>)")
             }
         }
         get {
@@ -98,7 +98,7 @@ class RNVideoPlayer: RCTView {
         set(val) {
             if val != nil {
                 self._moviePathSource = val!
-                print("CHANGED source \(val ?? <#default value#>)")
+                //print("CHANGED source \(val ?? <#default value#>)")
                 if self.gpuMovie != nil {
                     self.gpuMovie.endProcessing()
                 }
