@@ -26,7 +26,7 @@ class RNVideoTrimmer: NSObject {
   }
 
   @objc func getVideoOrientationFromAsset(asset : AVAsset) -> UIImage.Orientation {
-    let videoTrack: AVAssetTrack? = asset.tracks(withMediaType: AVMediaTypeVideo)[0]
+    let videoTrack: AVAssetTrack? = asset.tracks(withMediaType: AVMediaType.video)[0]
     let size = videoTrack!.naturalSize
 
     let txf: CGAffineTransform = videoTrack!.preferredTransform
@@ -85,11 +85,11 @@ class RNVideoTrimmer: NSObject {
     }
 
     exportSession.outputURL = NSURL.fileURL(withPath: outputURL)
-    exportSession.outputFileType = AVFileTypeMPEG4
+    exportSession.outputFileType = AVFileType.mp4
     exportSession.shouldOptimizeForNetworkUse = true
 
     let videoComposition = AVMutableVideoComposition(propertiesOf: asset)
-    let clipVideoTrack: AVAssetTrack! = asset.tracks(withMediaType: AVMediaTypeVideo)[0]
+    let clipVideoTrack: AVAssetTrack! = asset.tracks(withMediaType: AVMediaType.video)[0]
     let videoOrientation = self.getVideoOrientationFromAsset(asset: asset)
 
     let videoWidth : CGFloat
@@ -229,13 +229,13 @@ class RNVideoTrimmer: NSObject {
               return
       }
       exportSession.outputURL = NSURL.fileURL(withPath: outputURL.path)
-      exportSession.outputFileType = AVFileTypeMPEG4
+    exportSession.outputFileType = AVFileType.mp4
       exportSession.shouldOptimizeForNetworkUse = true
 
       if saveToCameraRoll && saveWithCurrentDate {
         let metaItem = AVMutableMetadataItem()
-        metaItem.key = AVMetadataCommonKeyCreationDate as (NSCopying & NSObjectProtocol)?
-        metaItem.keySpace = AVMetadataKeySpaceCommon
+        metaItem.key = AVMetadataKey.commonKeyCreationDate as (NSCopying & NSObjectProtocol)?
+        metaItem.keySpace = AVMetadataKeySpace.common
         metaItem.value = NSDate() as (NSCopying & NSObjectProtocol)?
         exportSession.metadata = [metaItem]
       }
@@ -279,7 +279,7 @@ class RNVideoTrimmer: NSObject {
     let firstAsset = AVAsset(url: sourceURL as URL)
 
     let mixComposition = AVMutableComposition()
-    let track = mixComposition.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
+    let track = mixComposition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
 
 
     var outputURL = documentDirectory.appendingPathComponent("output")
@@ -310,14 +310,14 @@ class RNVideoTrimmer: NSObject {
 
       // Credit: https://www.raywenderlich.com/94404/play-record-merge-videos-ios-swift
       do {
-        try track.insertTimeRange(CMTimeRangeMake(kCMTimeZero, firstAsset.duration), of: firstAsset.tracks(withMediaType: AVMediaTypeVideo)[0], at: kCMTimeZero)
+        try track?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, firstAsset.duration), of: firstAsset.tracks(withMediaType: AVMediaType.video)[0], at: kCMTimeZero)
       } catch _ {
         callback( ["Failed: Could not load 1st track", NSNull()] )
         return
       }
 
       do {
-        try track.insertTimeRange(CMTimeRangeMake(kCMTimeZero, secondAsset.duration), of: secondAsset.tracks(withMediaType: AVMediaTypeVideo)[0], at: mixComposition.duration)
+        try track?.insertTimeRange(CMTimeRangeMake(kCMTimeZero, secondAsset.duration), of: secondAsset.tracks(withMediaType: AVMediaType.video)[0], at: mixComposition.duration)
       } catch _ {
         callback( ["Failed: Could not load 2nd track", NSNull()] )
         return
@@ -329,7 +329,7 @@ class RNVideoTrimmer: NSObject {
         return
       }
       exportSession.outputURL = NSURL.fileURL(withPath: finalURL.path)
-      exportSession.outputFileType = AVFileTypeMPEG4
+        exportSession.outputFileType = AVFileType.mp4
       exportSession.shouldOptimizeForNetworkUse = true
       let startTime = CMTime(seconds: Double(0), preferredTimescale: 1000)
       let endTime = CMTime(seconds: mixComposition.duration.seconds, preferredTimescale: 1000)
@@ -410,7 +410,7 @@ class RNVideoTrimmer: NSObject {
       let sourceURL = getSourceURL(source: source)
       let asset = AVAsset(url: sourceURL as URL)
 
-      guard let videoTrack = asset.tracks(withMediaType: AVMediaTypeVideo).first else  {
+    guard let videoTrack = asset.tracks(withMediaType: AVMediaType.video).first else  {
           callback(["Error getting track info", NSNull()])
           return
       }
@@ -447,13 +447,13 @@ class RNVideoTrimmer: NSObject {
           callback(["Error creating AVAssetExportSession", NSNull()])
           return
       }
-      compressionEncoder!.outputFileType = AVFileTypeMPEG4
+    compressionEncoder!.outputFileType = AVFileType.mp4.rawValue
       compressionEncoder!.outputURL = NSURL.fileURL(withPath: outputURL.path)
       compressionEncoder!.shouldOptimizeForNetworkUse = true
       if saveToCameraRoll && saveWithCurrentDate {
         let metaItem = AVMutableMetadataItem()
-        metaItem.key = AVMetadataCommonKeyCreationDate as (NSCopying & NSObjectProtocol)?
-        metaItem.keySpace = AVMetadataKeySpaceCommon
+        metaItem.key = AVMetadataKey.commonKeyCreationDate as (NSCopying & NSObjectProtocol)?
+        metaItem.keySpace = AVMetadataKeySpace.common
         metaItem.value = NSDate() as (NSCopying & NSObjectProtocol)?
         compressionEncoder!.metadata = [metaItem]
       }
@@ -498,7 +498,7 @@ class RNVideoTrimmer: NSObject {
     var assetInfo: [String: Any] = [
       "duration" : asset.duration.seconds
     ]
-    if let track = asset.tracks(withMediaType: AVMediaTypeVideo).first {
+    if let track = asset.tracks(withMediaType: AVMediaType.video).first {
       let naturalSize = track.naturalSize
       let t = track.preferredTransform
       let isPortrait = t.a == 0 && abs(t.b) == 1 && t.d == 0
