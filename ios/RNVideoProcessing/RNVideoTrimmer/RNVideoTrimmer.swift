@@ -206,7 +206,7 @@ class RNVideoTrimmer: NSObject {
       if sTime == nil {
           sTime = 0
       }
-      var outputURL = documentDirectory.appendingPathComponent("output")
+      var outputURL = documentDirectory.appendingPathComponent("rntrimmer")
       do {
           try manager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
           let name = randomString()
@@ -282,8 +282,8 @@ class RNVideoTrimmer: NSObject {
     let track = mixComposition.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
 
 
-    var outputURL = documentDirectory.appendingPathComponent("output")
-    var finalURL = documentDirectory.appendingPathComponent("output")
+    var outputURL = documentDirectory.appendingPathComponent("rntrimmer")
+    var finalURL = documentDirectory.appendingPathComponent("rntrimmer")
     do {
       try manager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
       try manager.createDirectory(at: finalURL, withIntermediateDirectories: true, attributes: nil)
@@ -368,7 +368,7 @@ class RNVideoTrimmer: NSObject {
     let sourceURL = getSourceURL(source: source)
     let asset = AVAsset(url: sourceURL as URL)
 
-    var outputURL = documentDirectory.appendingPathComponent("output")
+    var outputURL = documentDirectory.appendingPathComponent("rntrimmer")
     do {
       try manager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
       let name = randomString()
@@ -429,7 +429,7 @@ class RNVideoTrimmer: NSObject {
           }
       }
 
-      var outputURL = documentDirectory.appendingPathComponent("output")
+      var outputURL = documentDirectory.appendingPathComponent("rntrimmer")
       do {
           try manager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
           let name = randomString()
@@ -569,7 +569,7 @@ class RNVideoTrimmer: NSObject {
   func randomString() -> String {
     let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     let randomString: NSMutableString = NSMutableString(capacity: 20)
-    let s:String = "RNTrimmer-Temp-Video"
+    let s:String = "RNTrimmer-Video"
     for _ in 0...19 {
       randomString.appendFormat("%C", letters.character(at: Int(arc4random_uniform(UInt32(letters.length)))))
     }

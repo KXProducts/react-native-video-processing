@@ -25,7 +25,25 @@
 		24F466DA1DD9F1CB0012172B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F4669B1DD9EB9B0012172B /* CoreVideo.framework */; };
 		24F466DB1DD9F1CB0012172B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F4669E1DD9EBBD0012172B /* QuartzCore.framework */; };
 		24FFDD151DDC799E006040F9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FFDD141DDC799E006040F9 /* MobileCoreServices.framework */; };
+		D72B8E5222E829DE00D28D1B /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72B8E5122E829CF00D28D1B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D72B8E4E22E829CF00D28D1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D72B8E4822E829CF00D28D1B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		D72B8E5022E829CF00D28D1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D72B8E4822E829CF00D28D1B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -70,6 +88,7 @@
 		24F4669E1DD9EBBD0012172B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		24F466A01DD9EBC40012172B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		24FFDD141DDC799E006040F9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D72B8E4822E829CF00D28D1B /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72B8E5222E829DE00D28D1B /* GPUImage.framework in Frameworks */,
 				24FFDD151DDC799E006040F9 /* MobileCoreServices.framework in Frameworks */,
 				24F466D81DD9F1CB0012172B /* AVFoundation.framework in Frameworks */,
 				24F466D91DD9F1CB0012172B /* CoreMedia.framework in Frameworks */,
@@ -161,6 +181,7 @@
 		24F466971DD9EB8B0012172B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D72B8E4822E829CF00D28D1B /* GPUImage.xcodeproj */,
 				24FFDD141DDC799E006040F9 /* MobileCoreServices.framework */,
 				24F466A01DD9EBC40012172B /* OpenGLES.framework */,
 				24F4669E1DD9EBBD0012172B /* QuartzCore.framework */,
@@ -178,6 +199,15 @@
 				134814211AA4EA7D00B7C361 /* Products */,
 				24F466971DD9EB8B0012172B /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		D72B8E4922E829CF00D28D1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D72B8E4F22E829CF00D28D1B /* libGPUImage.a */,
+				D72B8E5122E829CF00D28D1B /* GPUImage.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,17 +250,41 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D72B8E4922E829CF00D28D1B /* Products */;
+					ProjectRef = D72B8E4822E829CF00D28D1B /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNVideoProcessing */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D72B8E4F22E829CF00D28D1B /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = D72B8E4E22E829CF00D28D1B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D72B8E5122E829CF00D28D1B /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = D72B8E5022E829CF00D28D1B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -345,9 +399,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNVideoProcessing;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "RNVideoProcessing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RNVideoProcessing/RNVideoProcessing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -366,8 +420,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNVideoProcessing;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "RNVideoProcessing-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNVideoProcessing/RNVideoProcessing-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
