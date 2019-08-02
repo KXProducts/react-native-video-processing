@@ -5,6 +5,7 @@
 
 import Foundation
 import AVFoundation
+import AVUtilities
 
 enum QUALITY_ENUM: String {
   case QUALITY_LOW = "low"
