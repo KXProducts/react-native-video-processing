@@ -305,7 +305,11 @@ public class Trimmer {
 
       promise.resolve(event);
     } finally {
-      retriever.release();
+      try{
+        retriever.release();
+      }catch (IOException ex) {
+        // handle the exception here
+      }
     }
   }
 
